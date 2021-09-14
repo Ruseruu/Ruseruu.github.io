@@ -9,15 +9,16 @@ body {
   }
   
   h1, h2 {
-  color: white;
+  color: grey;
   font-size: 45px;
   }
   
   a
   {
-    color: white;
+    color: grey;
     font-family: Arial, sans-serif;
     font-size: 30px;
+    text-decoration: none;
   }
   /* Add a black background color to the top navigation */
 .topnav {
