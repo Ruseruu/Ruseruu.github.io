@@ -44,10 +44,15 @@ span  {
   background-color: yellow;
 }
 
-span .a {
+span[class="a"] {
   word-wrap: normal;
 }
 
-span .b {
+span[class="b"] {
   position: absolute;
+}
+
+span[class="b"] {
+  word-wrap: normal;
+  height: auto;
 }
