@@ -44,10 +44,10 @@ span  {
   background-color: yellow;
 }
 
-span #a {
+span .a {
   word-wrap: normal;
 }
 
-span #b {
+span .b {
   position: absolute;
 }
