@@ -43,3 +43,11 @@ span  {
   border-color: blue;
   background-color: yellow;
 }
+
+span #a {
+  word-wrap: normal;
+}
+
+span #b {
+  position: absolute;
+}
