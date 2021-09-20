@@ -1,3 +1,7 @@
+body {
+  background-color: skyblue;
+}
+
 .stripey tr:nth-child(even) {
   background-color: gray;
 }
@@ -16,7 +20,4 @@
 }
 input[type="text"].pinkey:focus {
   background-color: pink;
-}
-body {
-  background-color: skyblue;
 }
