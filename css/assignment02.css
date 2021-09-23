@@ -79,3 +79,11 @@ img[alt="bird icon"] {
   top: -350px;
   position: relative; 
 }
+
+nav {
+  z-index: 20;
+  position: sticky; 
+  background-color: green;
+  opacity: 10%; 
+  padding: 5px;
+  font-size: 20px;
