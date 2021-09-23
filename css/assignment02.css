@@ -71,4 +71,5 @@ img[alt="cat icon"] {
 img[alt="dog icon"] {
   left: 50px;
   top: 150px;
+  position: absolute; 
 }
