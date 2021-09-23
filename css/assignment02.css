@@ -61,3 +61,7 @@ span[class="c"] {
    z-index: 10;
    position: absolute;
 }
+img[alt=”cat icon”] {
+  z-index: 10;
+  position: absolute; 
+}
