@@ -67,3 +67,8 @@ img[alt=”cat icon”] {
   right: 0px;
   bottom: 0px;
 }
+
+img[alt=”dog icon”] {
+  left: 50px;
+  top: 150px;
+}
