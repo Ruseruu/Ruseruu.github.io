@@ -3,7 +3,7 @@ body {
 }
 
 .stripey tr:nth-child(even) {
-  background-color: gray;
+  background-color: #f2f2f2;
 }
 .stripey tr:nth-child(odd) {
   background-color: white;
