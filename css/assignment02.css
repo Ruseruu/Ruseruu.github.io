@@ -63,7 +63,7 @@ span[class="c"] {
 }
 img[alt="cat icon"] {
   z-index: 10;
-  position: sticky; 
+  position: fixed; 
   right: 0px;
   bottom: 0px;
 }
