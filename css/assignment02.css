@@ -45,7 +45,7 @@ span  {
 
 span[class="a"] {
   word-wrap: normal;
-  position: relative;
+  position: absolute;
   height: auto;
   display: inline;
 }
@@ -58,6 +58,7 @@ span[class="b"] {
 span[class="c"] {
   word-wrap: normal;
   display: inline-block;
+  position: relative;
 }
 
  img[alt="alt icon"]{
