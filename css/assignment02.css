@@ -45,7 +45,7 @@ span  {
 
 span[class="a"] {
   word-wrap: normal;
-  position:absolute;
+  position: relative;
 }
 
 span[class="b"] {
