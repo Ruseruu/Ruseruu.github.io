@@ -47,7 +47,7 @@ span[class="a"] {
   word-wrap: normal;
   position: absolute;
   height: auto;
-  display: inline;
+  display: inline-block;
 }
 
 span[class="b"] {
