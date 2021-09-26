@@ -50,8 +50,8 @@ span[class="a"] {
 }
 
 span[class="b"] {
-  position: absolute;
-  word-wrap: normal;
+  position: relative;
+  display: block;
 }
 
 span[class="c"] {
