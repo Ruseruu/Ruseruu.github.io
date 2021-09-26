@@ -45,12 +45,11 @@ span  {
 
 span[class="a"] {
   word-wrap: normal;
-  height: auto;
+  position:absolute;
 }
 
 span[class="b"] {
   position: absolute;
-  height: auto;
 }
 
 span[class="c"] {
