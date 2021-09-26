@@ -46,10 +46,12 @@ span  {
 span[class="a"] {
   word-wrap: normal;
   position: relative;
+  height: initial;
 }
 
 span[class="b"] {
   position: absolute;
+  word-wrap: normal;
 }
 
 span[class="c"] {
