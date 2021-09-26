@@ -46,7 +46,7 @@ span  {
 span[class="a"] {
   word-wrap: normal;
   position: relative;
-  height: initial;
+  height: auto;
 }
 
 span[class="b"] {
