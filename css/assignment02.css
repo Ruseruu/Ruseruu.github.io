@@ -79,8 +79,8 @@ img[alt="dog icon"] {
 }
 
 img[alt="bird icon"] {
-  right: -800px;
-  top: -350px;
+  right: 800px;
+  top: 350px;
   position: relative; 
 }
 
