@@ -134,7 +134,7 @@ function displayAbout() {
 // Navigate back home
 function displayHome()
 {
-	windows.location.href ="../clubDistanceList.html"
+	window.location.href ="../clubDistanceList.html"
 }
 // navigate to "Penalty Info" screen
 function displayPenaltyInfo() {
