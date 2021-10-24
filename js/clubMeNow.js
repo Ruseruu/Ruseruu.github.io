@@ -98,7 +98,6 @@ function undoLastShot() {
 	
 		window.location.href = "../clubDistanceList.html";
 	}
-}
 
 // create a new (default) "clubs" array
 function resetAllClubDistances() {
