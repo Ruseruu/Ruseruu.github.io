@@ -52,10 +52,9 @@
 	
 	function addClub() {
         // your code here
-		var clubText = document.getElementById("clubName").value;
 		let str = JSON.stringify(clubs);
 		localStorage.setItem("clubsUndo", str);
-		clubs[clubs.length + clubRow] = [clubRow, clubName, clubName, 0, 0, 0, 0, 0, 0, 0];
+		clubs[clubs.length] = [clubRow, clubName, clubName, 0, 0, 0, 0, 0, 0, 0];
 		
 		str = JSON.stringify(clubs);
 		localStorage.setItem("clubs", str);
