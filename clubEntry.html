@@ -47,10 +47,8 @@
 	// retrieve the "clubs" array
 	let clubs = JSON.parse(localStorage.getItem('clubs'));
 	// display the full clubName of the user-chosen club
-	let newClubName ;
-	let newClubDistances;
 	
-	function addClub() {
+	function addClub(newClubName) {
         // your code here
 		let str = JSON.stringify(clubs);
 		localStorage.setItem("clubsUndo", str);
