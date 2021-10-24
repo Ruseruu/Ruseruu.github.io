@@ -92,33 +92,10 @@ function displayClubDistanceEntryForm(c) {
 // replace the current "clubs" array with the previous one
 function undoLastShot() {
         // your code here !
-	If(parseInt(shotDistance) > 0)
-	{
+	Let clubs = JSON.parse(localStorage.getItem("clubsUndo"));
 	Let str = JSON.stringify(clubs); //Store current clubs
-	localStorage.getItem("clubsUndo", str);
+	localStorage.setItem("clubsUndo", str);
 	
-		let clubs = [
-		[ 199, "Dr",  "Driver",   0, 0, 0, 0, 10.5, 230, 200],
-		[ 300, "3+w", "3+ wood",  0, 0, 0, 0, 13.5, 210, 180],
-		[ 350, "3h",  "3 hybrid", 0, 0, 0, 0, 18.0, 180, 160],
-		// [ 399, "3i",  "3 iron",   0, 0, 0, 0, 18.5, 180, 160],
-		// [ 499, "4i",  "4 iron",   0, 0, 0, 0, 18.5, 170, 150],
-		[ 599, "5i",  "5 iron",   0, 0, 0, 0, 21.0, 160, 140],
-		[ 699, "6i",  "6 iron",   0, 0, 0, 0, 24.0, 150, 130],
-		[ 799, "7i",  "7 iron",   0, 0, 0, 0, 27.0, 140, 120],
-		[ 899, "8i",  "8 iron",   0, 0, 0, 0, 31.5, 130, 110],
-		[ 999, "9i",  "9 iron",   0, 0, 0, 0, 36.0, 120, 100],
-		[1099, "Pw",  "Pitching", 0, 0, 0, 0, 41.0, 110,  90],
-		[1199, "Aw",  "Approach", 0, 0, 0, 0, 46.0, 100,  80],
-		[1299, "Gw",  "Gap",      0, 0, 0, 0, 51.0,  90,  70],
-		[1399, "Sw",  "Sand",     0, 0, 0, 0, 56.0,  80,  60],
-		[1499, "Lw",  "Lob",      0, 0, 0, 0, 60.0,  60,  40],
-		[1599, "Ptr", "Putter",   0, 0, 0, 0, 60.0,   3,   3],
-	];	
-	
-		Let str = JSON.stringify(clubs); // Set new clubs
-		localSorage.setItem("clubsUndo", str); 
-		
 		window.location.href = "../clubDistanceList.html";
 	}
 }
