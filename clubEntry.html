@@ -53,10 +53,12 @@
 	function addClub() {
         // your code here
 		var clubText = document.getElementById("clubName").value;
-		clubs[clubs.length + clubRow] = [clubRow, clubName, clubName, 0, 0, 0, 0, 2, 0, 0];
-		alert(clubText);
+		let str = JSON.stringify(clubs);
+		localStorage.setItem("clubsUndo", str);
+		clubs[clubs.length + clubRow] = [clubRow, clubName, clubName, 0, 0, 0, 0, 0, 0, 0];
 		
-		cancelClub();
+		str = JSON.stringify(clubs);
+		localStorage.setItem("clubs", str);
 	}
 	
 	// navigate to club distance LIST screen
