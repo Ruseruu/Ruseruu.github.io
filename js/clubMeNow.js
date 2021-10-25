@@ -80,8 +80,13 @@ function appendTableRows() {
 
 // navigate to "club ENTRY" screen (enter a new club, not a distance)
 function displayClubEntry() {
-	window.location.href = "clubEntry.html"; 
+		if(clubs.length > 14){
+		alert("Cannot have more than 14 clubs.");
 }
+	else{
+	window.location.href = "clubEntry.html"; 
+	}
+	}
 
 // navigate to "Distance Entry" screen (from one of the club "+" buttons)
 function displayClubDistanceEntryForm(c) {
