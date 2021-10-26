@@ -57,16 +57,19 @@ appendTableRow5(table2b,"21","22","23","24","25");
 // in table3B, add a column, "Price * Qty", and use JS to compute the correct values to put in the column
 // add to table03B a "totals" row which gives the "grand total" of all numbers in the "Price * Qty" column
 let table03B = document.getElementById("3B")
-let priceQty1 = table03B.children[0].children[0].children[1].children[1].innerHTML * table03B.children[0].children[0].children[1].children[2].innerHTML
+appendTableRow3(table03B,"Thingamabob","1.00","1");
+appendTableRow3(table03B,"Whachamacallit","2.00","2");
+appendTableRow3(table03B,"Doohickey","3.00","3");
+let priceQty1 = table03B.children[0].children[0].children[1].innerHTML * table03B.children[0].children[0].children[2].innerHTML;
 
-let priceQty2 = table03B.children[0].children[0].children[2].children[1].innerHTML * table03B.children[0].children[0].children[2].children[2].innerHTML
-let priceQty3 = table03B.children[0].children[0].children[3].children[1].innerHTML * table03B.children[0].children[0].children[3].children[2].innerHTML
-table03B.children[0].children[0].children[4].children[1].innerHTML = priceQty1;
-table03B.children[0].children[0].children[4].children[2].innerHTML = priceQty2;
-table03B.children[0].children[0].children[4].children[3].innerHTML = priceQty3;
+let priceQty2 = table03B.children[0].children[1].children[1].innerHTML * table03B.children[0].children[1].children[2].innerHTML;
+let priceQty3 = table03B.children[0].children[2].children[1].innerHTML * table03B.children[0].children[2].children[2].innerHTML;
+
 
 let grandTotal = priceQty1 + priceQty2 + priceQty3;
-table03B.children[0].children[0].children[5].children[1].innerHTML = grandTotal;
+
+appendTableRow4(table03B,"Price * Qty", priceQty1, priceQty2, priceQty3);
+appendTableRow2(table03B, "Grand Total", grandTotal);
 // 9. Revise a non-object-oriented HTML form. Make it so the field in focus displays *only* its own error (not the errors of all the other fields), however, if the user clicks the "validate" button, then display all errors.
 // code below is from: https://www.guru99.com/practical-code-examples-using-javascript.html 
 
@@ -372,7 +375,42 @@ function appendTableRow3 (tableobj, col1, col2, col3) {
   // append the row to the tbody element in the table
   tableobj.children[0].appendChild(tr);
 }
-
+function appendTableRow4 (tableobj, col1, col2, col3, col4) {
+  // create column (table division) DOM objects
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  let td3 = document.createElement("td");
+  let td4 = document.createElement("td");
+  // insert content into columns
+  td1.innerHTML = col1;
+  td2.innerHTML = col2;
+  td3.innerHTML = col3;
+  td4.innerHTML = col4;
+  // create table row DOM object
+  let tr = document.createElement("tr");
+  // append table divisions (columns) to table row
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  tr.appendChild(td4);
+  // append the row to the tbody element in the table
+  tableobj.children[0].appendChild(tr);
+}
+function appendTableRow2 (tableobj, col1, col2) {
+  // create column (table division) DOM objects
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  // insert content into columns
+  td1.innerHTML = col1;
+  td2.innerHTML = col2;
+  // create table row DOM object
+  let tr = document.createElement("tr");
+  // append table divisions (columns) to table row
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  // append the row to the tbody element in the table
+  tableobj.children[0].appendChild(tr);
+}
 function appendTableRow5 (tableobj, col1, col2, col3, col4, col5) {
   // create column (table division) DOM objects
   let td1 = document.createElement("td");
