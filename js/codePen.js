@@ -386,6 +386,11 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4, col5) {
   td3.innerHTML = col3;
   td4.innerHTML = col4;
   td5.innerHTML = col5;
+  td1.setAttribute("style", "border:1px solid black;")
+  td2.setAttribute("style", "border:1px solid black;")
+  td3.setAttribute("style", "border:1px solid black;")
+  td4.setAttribute("style", "border:1px solid black;")
+  td5.setAttribute("style", "border:1px solid black;")
   // create table row DOM object
   let tr = document.createElement("tr");
   // append table divisions (columns) to table row
