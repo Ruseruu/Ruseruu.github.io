@@ -4,40 +4,45 @@
 
 <head>
 
-    <title>ClubMeNow - Club Entry</title>
-    <link rel="icon" href="images/clubMeNow300x300.png" type="image/png" />
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css' />
-    <!-- ClubMeNow custom CSS -->
-    <link rel='stylesheet' href='../CSS/clubMeNow.css' />
-
+	<title>ClubMeNow - Club Entry</title>
+	<link rel="icon" href="clubMeNow300x300.png" type="image/png" />
+	<!-- Bootstrap CSS -->
+	<link rel='stylesheet' 
+	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css' />
+	<!-- ClubMeNow custom CSS -->
+	<link rel='stylesheet' href='../css/clubMeNow.css' />
+	
 </head>
 
 <body>
-    
-    <div class='container'>
 
-        <h1>Add Club</h1>
-        <form action='clubDistanceList.html'>
-            <div class='form-group'>
-                <label for='clubName'></label>
-                <input name='clubName' id='clubName' type='text' class='form-control cmn_moreHeight' placeholder='Driver' required /><br>
-                <button class='btn btn-success cmn_fullHeight' onclick='addClub(document.getElementById("clubName").value);'>&nbsp;&nbsp;&#x2714;&nbsp;&nbsp;</button>
-                <button class='btn btn-danger cmn_fullHeight' onclick='cancelClub();'>&nbsp;&nbsp;X&nbsp;&nbsp;</button>
-                <br>
-                <br>
-            </div>
-        </form>
+<div class='container'>
 
-        <br>
-        <footer>Copyright &copy;2020 George Corser</footer>
+	<h1>Add Club</h1>
+	<form action='clubDistanceList.html'>
+		<div class='form-group'>
+			<label for='clubName'></label>
+			<input name='clubName' id='clubName' type='text' 
+			    class='form-control cmn_moreHeight' 
+				placeholder='Driver' required /><br>
+			<button class='btn btn-success cmn_fullHeight' 
+			    onclick='addClub();'>&nbsp;&nbsp;&#x2714;&nbsp;&nbsp;</button> 
+			<button class='btn btn-danger cmn_fullHeight'  
+			    onclick='cancelClub();'>&nbsp;&nbsp;X&nbsp;&nbsp;</button>
+			<br>
+			<br>
+		</div>
+	</form>
+	
+	<br>
+	<footer>Copyright &copy;2020 George Corser</footer>
+	
+</div>
 
-    </div>
-
-    <!-- ClubMeNow custom JS -->
-    <script src='../js/clubMeNow.js'></script>
-    <script>
-        // retrieve the row of the user-chosen club
+<!-- ClubMeNow custom JS -->
+<script src='../js/clubMeNow.js'></script>
+<script>
+	//retrieve the row of the user-chosen club
         let clubRow = parseInt(localStorage.getItem('club'));
         // retrieve the "clubs" array
         let clubs = JSON.parse(localStorage.getItem('clubs'));
@@ -58,7 +63,7 @@
         function cancelClub() {
             window.location.href = "../clubDistanceList.html";
         }
-    </script>
+</script>
 
 </body>
 
