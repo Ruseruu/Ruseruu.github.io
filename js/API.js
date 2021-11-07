@@ -3,11 +3,12 @@
 // use "var" keyword so code works in CodePen
 
 // Covid19api variables
+
 var URL = "https://api.covid19api.com/summary";
 var covidJson;
 var covidJsObj;
 var newConfirmedOver1000;
-
+var newArray;
 // implement an AJAX call to https://api.covid19api.com/summary save results to localStorage
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
@@ -44,6 +45,11 @@ var chartData = {
       label: 'oranges',
       data: [2, 29, 5, 5, 2, 3, 10],
       backgroundColor: "rgba(255,140,0,0.4)"
+    },
+    {
+      label: 'bananas',
+      data: [2, 29, 5, 5, 2, 3, 10],
+      backgroundColor: "rgba(255,140,0,0.4)"
     }]
   },
   options: {
@@ -54,9 +60,7 @@ var chartData = {
     scales: {
       yAxes: [{
         ticks: {
-          // logarithmic scale ignores maxTicksLimit
-          //scale so the y axis shows only powers of 10
-          maxTicksLimit: 10,
+          maxTicksLimit: 6,
           callback: function(label, index, labels) {
             return (   label/1000 > 9 
                     || label/1000 == 1 
@@ -89,44 +93,38 @@ function loadContent() {
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //Only run if the most recent AJAX call was over 24 hours ago or there is no data in localStorage
-    if (this.readyState == 4 && this.status == 200 && (localStorage.getItem("covidJsObj") == null || (dayjs().diff(dayjs(localStorage.getItem("covidJsObj").Date), 'hours') > 24))) {
-      
+    if (this.readyState == 4 && this.status == 200 && (localStorage.getItem("covidJsObj") == null || (dayjs().diff(dayjs(localStorage.getItem("covidJsObj").Date), 'hours') > 24))) {    
       covidJson = this.responseText;
       covidJsObj = JSON.parse(covidJson);
       newConfirmedOver1000 = [];
-      
+      newArray = [];
 	    for (let c of covidJsObj.Countries) {
         if (c.NewConfirmed > 5000) {
+          
           newConfirmedOver1000.push({ 
             "Slug": c.Slug, 
             "NewConfirmed": c.NewConfirmed, 
-            "NewDeaths": c.NewDeaths
-            //"Population": covidJsObj.Populations[c.Slug].Population,
-            //"TotalConfirmedPer100000": c.TotalConfirmed / (covidJsObj.Populations[c.Slug].Population / 100000)
+            "NewDeaths": c.NewDeaths,
+            "TotalConfirmedPer100000": c.TotalConfirmed / (c.populations / 100000)
           });
         }
       }
 
-      //Create a function that uses the population object to create an array of objcts containing Slug, TotalConfirmed, TotalDeaths, Population (which comes from the "populations object")
-      function population() {
-        var population = [];
-        for (let c of covidJsObj.Countries) {
-          population.push({ 
-            "Slug": c.Slug, 
-            "TotalConfirmed": c.TotalConfirmed, 
-            "TotalDeaths": c.TotalDeaths, 
-            "Population": covidJsObj.Populations[c.Slug].Population,
-            "TotalConfirmedPer100000": c.TotalConfirmed / (c.Populations[c.Slug].Population / 100000)
-          });
-        }
-        return population;
-      }
-
-      //newConfirmedOver1000 = _.orderBy(newConfirmedOver1000, "NewDeaths", "desc");
-      //Use Lodash(_.orderBy) to sort the array by NewDeaths in descending order.
+      // run the for loop below only if the total deaths of a country is greater than 50000
+      for (let c of covidJsObj.Countries) {
+        if (c.TotalDeaths > 50000) {
+            newArray.push({
+              "Slug": c.Slug,
+              "TotalConfirmed": c.TotalConfirmed,
+              "TotalDeaths": c.TotalDeaths,
+              "Population": c.populations,
+              "TotalConfirmedPer100000": c.TotalConfirmed / (c.populations / 100000)
+            });
+            }
+          }
+      
       newConfirmedOver1000 = _.orderBy(newConfirmedOver1000, "NewDeaths", "desc");
-
-
+      newArray = _.orderBy(newArray, "TotalConfirmedPer100000", "desc");
       chartData.data.datasets[0].backgroundColor 
         = "rgba(100,100,100,0.4)"; // gray
       chartData.data.datasets[1].backgroundColor 
@@ -134,40 +132,86 @@ function loadContent() {
       chartData.data.datasets[0].label  
         = 'new cases';
       chartData.data.datasets[1].label  
-        = 'new deaths';
+        = 'total deaths';
+      chartData.data.datasets[2].label = "total confirmed per 100000"
       chartData.data.labels  
-        = newConfirmedOver1000.map( (x) => x.Slug );
+        = newArray.map( (x) => x.Slug );
       chartData.data.datasets[0].data  
-        = newConfirmedOver1000.map( 
-          (x) => x.NewConfirmed );
+        = newArray.map( 
+          (x) => x.TotalConfirmed );
       chartData.data.datasets[1].data  
+        = newArray.map( 
+          (x) => x.TotalDeaths );
+      chartData.data.datasets[2].data  
         = newConfirmedOver1000.map( 
-          (x) => x.NewDeaths );
+          (x) => x.TotalConfirmedPer100000 );
       chartData.options.title.text 
-        = dayjs().format('MMMM D YYYY');
+        = "Covid 19 hotspots as of " + dayjs().format('MMMM D YYYY');
       myChart = new Chart(ctx, chartData); 
 
-      // Put chart inside bootstrap div
-      document.getElementById("chartData").innerHTML = myChart.toBase64Image();
+    }
+    //Else, pull the data from the local storage
+    else{
+      //Pull the data from localStorage
+      covidJson = localStorage.getItem("covidJsObj");
+      covidJsObj = JSON.parse(covidJson);
+      newConfirmedOver1000 = [];
+      newArray = [];
+      for (let c of covidJsObj.Countries) {
+        if (c.NewConfirmed > 5000) {
+          newConfirmedOver1000.push({ 
+            "Slug": c.Slug, 
+            "NewConfirmed": c.NewConfirmed, 
+            "NewDeaths": c.NewDeaths,
+            "TotalConfirmedPer100000": c.TotalConfirmed / (c.populations / 100000)
+          });
+        }
+      }
+      for (let c of covidJsObj.Countries) {
+        if (c.TotalDeaths > 50000) {
+            newArray.push({
+              "Slug": c.Slug,
+              "TotalConfirmed": c.TotalConfirmed,
+              "TotalDeaths": c.TotalDeaths,
+              "Population": c.populations,
+              "TotalConfirmedPer100000": c.TotalConfirmed / (c.populations / 100000)
+            });
+            }
+          }
+      newConfirmedOver1000 = _.orderBy(newConfirmedOver1000, "NewDeaths", "desc");
+      newArray = _.orderBy(newArray, "TotalConfirmedPer100000", "desc");
+      chartData.data.datasets[0].backgroundColor 
+        = "rgba(100,100,100,0.4)"; // gray
+      chartData.data.datasets[1].backgroundColor
+        = "rgba(255,0,0,0.4)"; // red
+      chartData.data.datasets[0].label
+        = 'new cases';
+      chartData.data.datasets[1].label
+        = 'new deaths';
+      chartData.data.datasets[2].label = "total confirmed per 100000"
+      chartData.data.labels
+        = newArray.map( (x) => x.Slug );
+      chartData.data.datasets[0].data
+        = newArray.map( 
+          (x) => x.TotalConfirmed );
+      chartData.data.datasets[1].data
+        = newArray.map( 
+          (x) => x.TotalDeaths );
+      chartData.data.datasets[2].data  
+        = newConfirmedOver1000.map( 
+          (x) => x.TotalConfirmedPer100000 );
+      chartData.options.title.text
+        = "Covid 19 hotspots as of " + dayjs().format('MMMM D YYYY');
+      myChart = new Chart(ctx, chartData);
+        }
+  }; 
 
-    } // end if
-    
-  }; // end xhttp.onreadystatechange = function()
-  
+  // end xhttp.onreadystatechange = function()
+
   xhttp.open("GET", URL, true);
   xhttp.send();
-  
-} // end function loadContent() 
-//Create a function that calculates total deaths
-function totalDeaths() {
-  var totalDeaths = 0;
-  for (let c of covidJsObj.Countries) {
-    totalDeaths += c.TotalDeaths;
-  }
-  return totalDeaths;
-}
-
-var totalDeaths = totalDeaths();
+} // end function loadContent()
+loadContent() 
 // data from: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population
 var populations = {
   'china' : 1405137440,
