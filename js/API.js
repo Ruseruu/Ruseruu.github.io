@@ -127,7 +127,7 @@ function loadContent() {
             "TotalDeaths": country.TotalDeaths,
             "TotalConfirmed": country.TotalConfirmed,
             "Population": country.populations,
-            "TotalConfirmedPer100000": 100000 * country.TotalDeaths / populations[country.Slug]
+            "TotalConfirmedPer100000": Math.round(100000 * country.TotalDeaths / populations[country.Slug])
         });
       }
     }
@@ -187,7 +187,7 @@ function loadContent() {
             "TotalDeaths": country.TotalDeaths,
             "TotalConfirmed": country.TotalConfirmed,
             "Population": country.populations,
-            "TotalConfirmedPer100000": 100000 * country.TotalDeaths / populations[country.Slug]
+            "TotalConfirmedPer100000": Math.round(100000 * country.TotalDeaths / populations[country.Slug])
         });
       }
     }
